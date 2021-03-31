@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args){
-        System.out.println("Hallow!");
+        System.out.println("Hallo! Java!");
+        System.out.println("Hallo! Github!");
     }
 }
