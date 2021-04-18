@@ -7,6 +7,7 @@ package SwordOffer;
  * 例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
  * 输入int n 2=<n<=60，输出int
  * 从暴力递归到动态规划的过程..
+ * 暴力递归算法复杂度过大
  */
 public class JZ67 {
     public static int cutRope(int target) {
