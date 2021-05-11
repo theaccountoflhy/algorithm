@@ -16,32 +16,33 @@ import java.util.Stack;
  * 那么，最后一块递减的为该树的最右边的枝丫，剩余从由往左按照16-14,14-10 ,<10 划分三个区域（可为空）为右侧三个节点的左子树（不能完全划分数组，那就不是二叉搜索树）
  * 对每一个子树进行相似判断划分，划分的终点为 该区域为null，一旦不能完全划分，则不是二叉搜索树.
  *
- *
+ *上述思路难写，换个思路，直接递归，按照最后一个值即根节点划分数组（左右子树）进行递归，
+ * 在子函数按从后往前顺序找到划分节点后，在判断划分节点以前是不是全小于根几点
  */
 public class JZ23 {
-    public boolean VerifySquenceOfBST(int [] sequence) {
-        if(sequence.length <1) {
-            return false;
-        }
-
-
-        }
-    public static boolean digui(int [] sequence,int i,int j){
-        if(sequence.length<=1){
+    public static boolean VerifySquenceOfBST(int [] sequence) {
+        if(sequence.length <1){
+            return false;}
+        return isBST(sequence,0 ,sequence.length-1);
+    }
+    public static boolean isBST(int [] sequence, int start,int end){
+        if(start >= end){
             return true;
         }
-
-        Stack<Integer> stack = new Stack<>();
-        stack.push(Integer.MIN_VALUE);
-        while(int k=j;k>=i;k--){
-            if(sequence[k]>stack.peek()){
-                stack.push(sequence[k]);
+        int split = start;
+        for(int i =end ;i>= start;i--){
+            if(sequence[i] < sequence[end]){
+                split = i+1;
+                break;
             }
+        }
+        for(int j =split-1 ; j>= start ; j--){
+            if(sequence[j] > sequence[end]){
+                return false;
+            }
+        }
+        return (isBST(sequence, start,split-1) && isBST(sequence,split,end-1));
 
-        }
-        if(){
-            return false;
-        }
 
     }
 
