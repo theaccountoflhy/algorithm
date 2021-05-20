@@ -23,6 +23,6 @@ public class Hanoi {
     }
 
     public static void main(String[] Args){
-        process(3,"左","中","右");
+        process(2,"左","中","右");
     }
 }
