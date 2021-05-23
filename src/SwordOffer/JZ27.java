@@ -1,8 +1,11 @@
 package SwordOffer;
 
+import sun.text.normalizer.UCharacter;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Create by hongyan on 2021/5/19
@@ -14,15 +17,19 @@ import java.util.Collections;
  *
  * 全排列加按照字典序打印出来，所以可以先试一下全排列，然后排序，
  * 也可以直接按照字典序找全排列，较麻烦
+ *
+ * 需要去重 但是左神方法，牛客自测与实际运行结果不一样
+ * 第二种方法：先排序得到字典序最小的序列，
  */
 public class JZ27 {
 
-    private static ArrayList<String> result = new ArrayList<>();
+/*solution1:    private static ArrayList<String> result = new ArrayList<>();
 
     public static ArrayList<String> Permutation(String str) {
         char[] temp = str.toCharArray();
+        //先去重
         process1(temp,0);
-        //Collections.sort(result);
+        Collections.sort(result);
         return result;
     }
 
@@ -30,9 +37,37 @@ public class JZ27 {
         if (i == chs.length) {
             result.add(String.valueOf(chs));
         }
+        Set<Character> a = new HashSet<>();  //去重这里，
         for (int j = i; j < chs.length; j++) {
-            swap(chs, i, j);
-            process1(chs, i + 1);
+            while(!a.contains(chs[j])){
+                a.add(chs[j]);
+                swap(chs, i, j);
+                process1(chs, i + 1);
+                swap(chs,i,j);   //需要返回
+            }
+        }
+    }*/
+
+    private static ArrayList<String> result = new ArrayList<>();
+
+    public static ArrayList<String> Permutation(String str) {
+        char[] temp = str.toCharArray();
+        //先去重
+        process1(temp,0);
+        Collections.sort(result);
+        return result;
+    }
+
+    public static void process1(char[] chs, int i) {
+        if (i == chs.length) {
+            if(!result.contains(String.valueOf(chs))) {
+                result.add(String.valueOf(chs));
+            }
+        }
+        for (int j = i; j < chs.length; j++) {
+                swap(chs, i, j);
+                process1(chs, i + 1);
+                swap(chs,i,j);   //需要返回
         }
     }
 
@@ -42,8 +77,20 @@ public class JZ27 {
         temp[i] = a;
     }
 
+/*    public static ArrayList<String> Permutation(String str) {
+        char[] temp = str.toCharArray();
+        for(int j=temp.length ; j>= 0 ; j-- ){
+            char tempchar = 
+        }
+    }
+
+    public static void reverse(String str,int start,int end){
+
+
+    }*/
+
     public static void main(String [] Args){
-        String str = "abc";
+        String str = "aa";
         System.out.println(Permutation(str));
     }
 }
