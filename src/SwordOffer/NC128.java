@@ -12,7 +12,7 @@ package SwordOffer;
  *
  * 看答案：每一个位置的液柱高度取决于左边最高多高，右边最高多高
  */
-public class JZ28 {
+public class NC128 {
     /**
      * max water
      * @param arr int整型一维数组 the array
